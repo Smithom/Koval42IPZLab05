@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
         String name = editTextName.getText().toString();
         String lastName = editTextLastName.getText().toString();
-        if (name==""){
+        if (name.isEmpty()){
     Toast.makeText(getApplicationContext(), "Ім'я не введено",Toast.LENGTH_SHORT).show();
         }
 
-    else if(lastName==""){
+    else if(lastName.isEmpty()){
         Toast.makeText(getApplicationContext(), "Прізвище не введено",Toast.LENGTH_SHORT).show();
     }
     else{
