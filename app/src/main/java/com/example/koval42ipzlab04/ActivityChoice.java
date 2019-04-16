@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
@@ -17,7 +16,7 @@ public class ActivityChoice extends AppCompatActivity {
     TextView text1;
     TextView text2;
     TextView text3;
-
+    Spinner spinner;
     RadioButton rb1;
     RadioButton rb2;
 
@@ -27,31 +26,13 @@ public class ActivityChoice extends AppCompatActivity {
     String prof;
     String name;
     String lastName;
-    String[] data = {"JavaScript", "Java", "Python", "C#", "С++"};
-    int idSpiner;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(2);
-        // устанавливаем обработчик нажатия
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-              idSpiner = position;
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
-
 
         Bundle arguments = getIntent().getExtras();
          name = arguments.get("name").toString();
@@ -67,7 +48,7 @@ public class ActivityChoice extends AppCompatActivity {
         ch1 = (CheckBox) findViewById(R.id.checkBox);
         ch2 = (CheckBox) findViewById(R.id.checkBox2);
         ch3 = (CheckBox) findViewById(R.id.checkBox3);
-
+        spinner = (Spinner) findViewById(R.id.spinner);
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
         text1.setText("Яку професію ти обираєш, "+name);
@@ -101,18 +82,20 @@ public class ActivityChoice extends AppCompatActivity {
     public void onClick(View view) {
         Intent intent = new Intent(this, FinalActivity.class);
 
+        int position = spinner.getSelectedItemPosition();
+
         intent.putExtra("prof", prof);
         intent.putExtra("name", name);
         intent.putExtra("lastName", lastName);
-        if(ch1.isChecked()) intent.putExtra("ch1", 1);
-        else intent.putExtra("ch1", 0);
-        if(ch2.isChecked()) intent.putExtra("ch2", 1);
-        else intent.putExtra("ch2", 0);
-        if(ch3.isChecked()) intent.putExtra("ch3", 1);
-        else intent.putExtra("ch3", 0);
-        intent.putExtra("program", data[idSpiner]);
 
+        String act ="";
+        if(ch1.isChecked()) act = act+"лекції, ";
+        if(ch2.isChecked()) act = act  +  "практичні, ";
+        if(ch3.isChecked()) act = act+"лабораторні, ";
 
+        intent.putExtra("act", act);
+        String[] data = getResources().getStringArray(R.array.data);;
+        intent.putExtra("program", data[position]);
         startActivity(intent);
 
     }

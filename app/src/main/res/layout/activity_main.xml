@@ -61,7 +61,7 @@
         android:layout_marginBottom="41dp"
         android:ems="10"
         android:hint="@string/textName1"
-        android:inputType="textPersonName|text"
+        android:inputType="date|textPersonName|text"
         android:textSize="24sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/editTextLastName"

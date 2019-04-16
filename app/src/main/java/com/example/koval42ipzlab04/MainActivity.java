@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,10 +25,17 @@ public class MainActivity extends AppCompatActivity {
 
         String name = editTextName.getText().toString();
         String lastName = editTextLastName.getText().toString();
+        if (name==""){
+    Toast.makeText(getApplicationContext(), "Ім'я не введено",Toast.LENGTH_SHORT).show();
+        }
 
+    else if(lastName==""){
+        Toast.makeText(getApplicationContext(), "Прізвище не введено",Toast.LENGTH_SHORT).show();
+    }
+    else{
         intent.putExtra("name", name);
         intent.putExtra("lastName", lastName);
         startActivity(intent);
-
+    }
     }
 }

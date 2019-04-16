@@ -15,4 +15,11 @@
     <string name="textChoos">Обери, яку мову ти б хотів вивчати</string>
     <string name="buttonMes">Надіслати</string>
 
+    <string-array name="data">
+        <item>JavaScript</item>
+        <item>Java</item>
+        <item>Python</item>
+        <item>C#</item>
+        <item>C++</item>
+    </string-array>
 </resources>
