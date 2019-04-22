@@ -14,7 +14,7 @@
     <string name="textLab">Лабораторні</string>
     <string name="textChoos">Обери, яку мову ти б хотів вивчати</string>
     <string name="buttonMes">Надіслати</string>
-
+    <string name="SendTo">Надіслати до</string>
     <string-array name="data">
         <item>JavaScript</item>
         <item>Java</item>

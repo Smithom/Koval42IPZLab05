@@ -23,11 +23,17 @@ public class ActivityChoice extends AppCompatActivity {
     CheckBox ch1;
     CheckBox ch2;
     CheckBox ch3;
-    String prof;
-    String name;
-    String lastName;
+    String prof="";
+    String name="";
+    String lastName="";
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        outState.putString("name",  name);
+        outState.putString("lastName", lastName);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,7 @@ public class ActivityChoice extends AppCompatActivity {
                     case -1:
                         Toast.makeText(getApplicationContext(), "Ничего не выбрано",
                                 Toast.LENGTH_SHORT).show();
+                        prof = "";
                         break;
                     case R.id.radioButton1:
                         Toast.makeText(getApplicationContext(), "Програміст",
@@ -78,6 +85,13 @@ public class ActivityChoice extends AppCompatActivity {
                 }
             }
         });
+
+        if (savedInstanceState != null)
+        {
+            name = savedInstanceState.getString("name");
+            lastName = savedInstanceState.getString("lastName");
+
+        }
     }
     public void onClick(View view) {
         Intent intent = new Intent(this, FinalActivity.class);
@@ -94,7 +108,7 @@ public class ActivityChoice extends AppCompatActivity {
         if(ch3.isChecked()) act = act+"лабораторні, ";
 
         intent.putExtra("act", act);
-        String[] data = getResources().getStringArray(R.array.data);;
+        String[] data = getResources().getStringArray(R.array.data);
         intent.putExtra("program", data[position]);
         startActivity(intent);
 

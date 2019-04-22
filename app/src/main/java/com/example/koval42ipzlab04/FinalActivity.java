@@ -1,11 +1,13 @@
 package com.example.koval42ipzlab04;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class FinalActivity extends AppCompatActivity {
-
+   String str;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,13 @@ public class FinalActivity extends AppCompatActivity {
         if (act == "") act = " мінімуму зусиль ";
 
         TextView valText = (TextView)findViewById(R.id.textView);
-
-        valText.setText("Студент: "+lastName+" "+name+" обрав спеціальність: "+prof+" Обрав активності: "+program + " .А також бажає виконувати "+act);
+        str = "Студент: "+lastName+" "+name+" обрав спеціальність: "+prof+" Обрав активності: "+program + " .А також бажає виконувати "+act;
+        valText.setText(str);
+    }
+    public void onClickSendTo(View view) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, str);
+        intent.setType("text/plain");
+        startActivity(intent);
     }
 }
